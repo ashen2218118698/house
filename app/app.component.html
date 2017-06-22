@@ -1,0 +1,199 @@
+<header id="header">
+    <div class="header__top">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li role="presentation" [ngClass]="{'open':isOpen}">
+                    <a data-toggle="dropdown" (click)="isOpen = !isOpen">注册</a>
+                    <form class="dropdown-menu">
+                        <div class="form-group">
+                            <input #userName type="text" class="form-control" placeholder="邮箱地址">
+                            <i class="form-group__bar"></i>
+                            <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+                        </div>
+                        <div class="form-group">
+                            <input #pwd type="password" class="form-control" placeholder="密码">
+                            <i class="form-group__bar"></i>
+                            <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+                        </div>
+                        <div class="form-group">
+                            <input #rpwd type="password" class="form-control" placeholder="确认密码">
+                            <i class="form-group__bar"></i>
+                            <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+                        </div>
+                        <p>
+                            <small>
+                                注册旧房屋网,您将同意本站
+                                <a href>条款</a>
+                                .
+                            </small>
+                        </p>
+                        <button class="btn btn-primary btn-block m-t-10 m-b-10">注册</button>
+                        <div class="text-center">
+                            <small>
+                                <a href>售房代理?</a>
+                            </small>
+                        </div>
+                        <div class="top-nav__auth">
+                            <span>or</span>
+                            <div>使用第三方登录</div>
+                            <a href class="blue-500">
+                                <i class="zmdi zmdi-facebook"></i>
+                            </a>
+                            <a href class="cyan-500">
+                                <i class="zmdi zmdi-twitter"></i>
+                            </a>
+                            <a href class="red-400">
+                                <i class="zmdi zmdi-google"></i>
+                            </a>
+                        </div>
+                    </form>
+                </li>
+                <li role="presentation"><a>登录</a></li>
+                <li role="presentation" class="pull-right"><a href><i class="zmdi zmdi-facebook"></i></a></li>
+                <li role="presentation" class="pull-right"><a href><i class="zmdi zmdi-twitter"></i></a></li>
+                <li role="presentation" class="pull-right"><a href><i class="zmdi zmdi-google"></i></a></li>
+                <li role="presentation" class="pull-right hidden-xs"><span><i class="zmdi zmdi-email"></i>    &nbsp;lihuan8864@163.com</span></li>
+                <li role="presentation" class="pull-right hidden-xs"><span><i class="zmdi zmdi-phone"></i>    &nbsp;187-1130-9202</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header__main">
+        <div class="container">
+            <a [routerLink]="['/dashboard']" class="logo">
+                <img src="../img/logo.png" alt>
+                <div class="logo__text">
+                    <span>旧房屋</span>
+                    <span>寻一屋终老</span>
+                </div>
+            </a>
+            <div class="navigation-trigger visible-xs visible-sm">
+                <i class="zmdi zmdi-menu" (click)="isToggled = !isToggled"></i>
+            </div>
+            <ul class="navigation" [ngClass]="{'toggled': isToggled}">
+                <li class="visible-xs visible-sm">
+                    <a class="navigation__close" href>
+                        <i class="zmdi zmdi-long-arrow-right" (click)="isToggled = !isToggled"></i>
+                    </a>
+                </li>
+                <li class="active navigation__dropdown dashboard">
+                    <a [routerLink]="['/dashboard']">主页</a>
+                </li>
+                <li class="navigation__dropdown" (mouseleave)="leave($event)">
+                    <a href (mouseover)="over($event)">二手房</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href>在售房源</a></li>
+                        <li><a href>找别墅</a></li>
+                        <li><a href>找经纪人</a></li>
+                        <li><a href>我要卖房</a></li>
+                    </ul>
+                </li>
+                <li class="navigation__dropdown" (mouseleave)="leave($event)">
+                    <a [routerLink]="['/houses']" (mouseover)="over($event)">新房</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href>热门楼盘</a></li>
+                        <li><a href>帮您找房</a></li>
+                    </ul>
+                </li>
+                <li class="navigation__dropdown" (mouseleave)="leave($event)">
+                    <a href (mouseover)="over($event)">租房</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href>在租房源</a></li>
+                        <li><a href>整租公寓</a></li>
+                        <li><a href>帮您租房</a></li>
+                    </ul>
+                </li>
+                <li class="navigation__dropdown" (mouseleave)="leave($event)">
+                    <a [routerLink]="['/agents']" (mouseover)="over($event)">售房代理</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a [routerLink]="['/agents']">代理人列表</a></li>
+                        <li><a href>代理房源</a></li>
+                    </ul>
+                </li>
+                <li class="navigation__dropdown"  (mouseleave)="leave($event)">
+                    <a [routerLink]="['/information']" (mouseover)="over($event)">资讯</a>
+                    <ul class="navigation__drop-menu navigation__drop-menu--right">
+                        <li><a href>资讯</a></li>
+                        <li><a href>百科</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<section>
+    <router-outlet></router-outlet>
+</section>
+<footer id="footer">
+    <div class="container hidden-xs">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="footer__block">
+                    <a class="logo clearfix" href>
+                        <div class="logo__text">
+                            <span>旧房屋</span>
+                            <span>寻一屋终老</span>
+                        </div>
+                    </a>
+                    <address class="m-t-20 m-b-20 f-14">
+                        长沙市天心区中意一路先锋小区366
+                    </address>
+                    <div class="f-20">187-1130-9202</div>
+                    <div class="f-14 m-t-5">lihuan8864@gmail.com</div>
+                    <div class="f-20 m-t-20">
+                        <a href class="m-r-10">
+                            <i class="zmdi zmdi-google"></i>
+                        </a>
+                        <a href class="m-r-10">
+                            <i class="zmdi zmdi-facebook"></i>
+                        </a>
+                        <a href>
+                            <i class="zmdi zmdi-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer__block footer__block--transactions">
+                    <div class="footer__title">最近成交记录</div>
+                    <a href>
+                        长沙市富兴世界金融中心
+                        <small>On 2016/06/20 at 8:00 PM</small>
+                    </a>
+                    <a href>
+                        上海市青浦绿地中心
+                        <small>On 2016/05/20 at 6:52 AM</small>
+                    </a>
+                    <a href>
+                        天津市翡翠蓝湾
+                        <small>On 2016/05/01 at 12:00 AM</small>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="footer__block">
+                    <div class="footer__title">
+                        免责声明
+                    </div>
+                    <div>
+                        本站旨在为广大用户提供更多信息服务，不声明或保证所提供信息的准确性和完整性。 页面所载内容及数据仅供用户参考和借鉴，最终以开发商或者经纪人实际公示数据为准， 用户因参照本站信息进行相关交易所造成的任何后果与本站无关。如在本站看到有虚假信息或者信息错误， 您可以点击相应的举报按钮或者拨打举报电话：400-873-0399
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container">
+            <span class="footer__copyright">
+                © 李欢欢2016
+            </span>
+            <a href>关于本站</a>
+            <a href>条款&条件</a>
+            <a href>隐私政策</a>
+            <a href>友情链接</a>
+            <a href>代理商注册</a>
+        </div>
+        <a class="footer__to-top" pageScroll [pageScrollOffset]="0" [pageScrollDuration]="400" href="#header">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </a>
+    </div>
+</footer>

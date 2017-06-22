@@ -1,0 +1,39 @@
+<div class="action-header affix-top clearfix">
+    <div class="container">
+        <div class="action-header__item action-header__item--search">
+            <form>
+                <input placeholder="代理姓名,公司" #searchBox id="search-box" (keyup)="search(searchBox.value)" type="text">
+            </form>
+        </div>
+    </div>
+</div>
+<section class="section">
+    <div class="container">
+        <div class="section__title">
+            <h2>来自全球各地的售房代理们</h2>
+            <small>在本站注册的代理人,受w3c世界组织保护</small>
+        </div>
+        <div class="row listings-grid" *ngIf="agents">
+            <div *ngFor="let agent of agents | async" (click)="onSelect(agent)" class="col-sm-6 col-md-3">
+                <div class="listings-grid__item">
+                    <a>
+                        <div class="listings-grid__main">
+                        <img [src]="agent.head" alt>
+                    </div>
+                        <div class="listings-grid__body">
+                           <h5>{{agent.name}}</h5>
+                        <small>{{agent.email}}</small>
+                        <small>{{agent.phone}}</small>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="load-more">
+            <a href>
+            <i class="zmdi zmdi-refresh-alt"></i>
+                        加载更多售房代理
+            </a>
+        </div>
+    </div>
+</section>

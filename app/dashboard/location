@@ -1,0 +1,10 @@
+INSERT INTO `location`(`id`, `photo`, `listings`, `location`) VALUES
+                                             (1,'../../img/locations/1.jpg','1023','达拉斯市'),
+                                             (2,'../../img/locations/2.jpg','1623','丹佛'),
+                                             (3,'../../img/locations/3.jpg','1153','底特律'),
+                                             (4,'../../img/locations/4.jpg','1723','洛杉矶'),
+                                             (5,'../../img/locations/5.jpg','1163','田纳西州'),
+                                             (6,'../../img/locations/6.jpg','2123','帕尔姆贝镇'),
+                                             (7,'../../img/locations/7.jpg','1129','圣迭戈'),
+                                             (8,'../../img/locations/8.jpg','1120','旧金山'),
+                                             (9,'../../img/locations/9.jpg','1183','圣荷西');

@@ -1,0 +1,58 @@
+<section class="section">
+    <div class="container">
+        <header class="section__title text-left">
+            <h2>{{agent.name}}</h2>
+            <small>{{agent.address}}</small>
+        </header>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card profile">
+                    <div class="profile__img">
+                        <img [src]="agent.head" alt="">
+                    </div>
+                    <div class="profile__info">
+                        <span class="label label-warning">专业会员</span>
+                        <span class="label label-success">优质代理</span>
+                        <div class="profile__review">
+                            <span class="rmd-rate jq-ry-container"></span>
+                            <span>(263条评论)</span>
+                        </div>
+                        <ul class="rmd-contact-list">
+                            <li>
+                                <i class="zmdi zmdi-assignment"></i>
+                             认证公司:{{agent.company}}
+                            </li>
+                            <li>
+                                <i class="zmdi zmdi-phone"></i>
+                                {{agent.phone}}
+                            </li>
+                            <li>
+                                <i class="zmdi zmdi-email"></i>
+                                {{agent.email}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="tab-nav tab-nav--justified">
+                        <div class="tab-nav__inner">
+                            <ul>
+                                <li>
+                                    <a>概览</a>
+                                </li>
+                                <li>
+                                    <a>房源</a>
+                                </li>
+                                <li>
+                                    <a>评论</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+            <div class="col-md-4 rmd-sidebar-mobile" id="agent-question"></div>
+        </div>
+    </div>
+</section>

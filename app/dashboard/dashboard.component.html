@@ -1,0 +1,150 @@
+<div class="bgc">
+    <div class="header__search container">
+        <div class="search">
+            <div class="search__type dropdown" [ngClass]="{'open':isOpen}">
+                <a (click)="isOpen = !isOpen" #houseType id="house-type">租房</a>
+                <div class="dropdown-menu">
+                    <div (click)="isOpen = !isOpen; loadType(rentHouse.value)">
+                        <input type="radio" value="租房" id="rent-house" #rentHouse>
+                        <span>租房</span>
+                     </div>
+                    <div (click)="isOpen = !isOpen; loadType(buyHouse.value)">
+                    <input type="radio" value="买房" id="buy-house" #buyHouse>
+                    <span>买房</span>
+                     </div>
+                </div>
+            </div>
+            <div id="search-component" class="search__body">
+                <input #searchBox id="search-box" class="search__input" (keyup)="search(searchBox.value)" placeholder="请输入位置信息进行查找">
+                <div class="search__advanced">
+                     <div *ngFor="let house of houses | async" (click)="gotoDeatail(house)">
+                        {{house.location}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__recommended">
+        <div class="my-location">
+            <div class="my-location__title">
+                浏览附近的漂亮房子
+            </div>
+        </div>
+        <div id="slick" class="listings-grid">
+            <div *ngFor="let house of recommendedHouses | async" (click)="gotoDetail(house)">
+                <div class="listings-grid__main">
+                    <img src="{{house.photo}}" alt>
+                    <div class="listings-grid__price">{{house.price}}</div>
+                </div>
+                <div class="listings-grid__body">
+                    <small>{{house.location}}</small>
+                    <h5>{{house.phone}}</h5>
+                </div>
+                <ul class="listings-grid__attrs">
+                    <li>
+                        <i class="listings-grid__icon listings-grid__icon--bed"></i>
+                        {{house.bedroom}}
+                    </li>
+                    <li>
+                        <i class="listings-grid__icon listings-grid__icon--bath"></i>
+                        {{house.bathroom}}
+                    </li>
+                    <li>
+                        <i class="listings-grid__icon listings-grid__icon--garages"></i>
+                        {{house.garages}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section">
+    <div class="container">
+        <header class="section__title">
+            <h2>10,000+房屋出售,出租</h2>
+            <small>别墅,公寓,办公室及商业建筑</small>
+        </header>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card clearfix">
+                    <div class="card__header card__header--minimal">
+                        <h2>最新待售房</h2>
+                        <small>最新最漂亮的房子待您选购</small>
+                    </div>
+                    <div class="grid-widget groups-grid--listings clearfix">
+                        <div class="col-xs-6" *ngFor="let house of topForSale | async" (click)="gotoDetail(house)">
+                            <div class="grid-widget__item">
+                                <img src="{{house.photo}}" alt>
+                                <div class="grid-widget__info">
+                                    <h3>{{house.price}}</h3>
+                                    <small>{{house.location}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="view-more" [routerLink]="['/houses']">查看所有待售房屋<i class="zmdi zmdi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card clearfix">
+                    <div class="card__header card__header--minimal">
+                        <h2>实惠待租房</h2>
+                        <small>甄选最实惠的待租房屋,让您拥有一个温馨的家</small>
+                    </div>
+                    <div class="grid-widget groups-grid--listings clearfix">
+                        <div class="col-xs-6" *ngFor="let house of topForRent | async" (click)="gotoDetail(house)">
+                            <div class="grid-widget__item">
+                                <img src="{{house.photo}}" alt>
+                                <div class="grid-widget__info">
+                                    <h3>{{house.price}}</h3>
+                                    <small>{{house.location}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="view-more" [routerLink]="['/houses']">查看所有待租房屋<i class="zmdi zmdi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card clearfix">
+                    <div class="card__header card__header--minimal">
+                        <h2>人文生态区</h2>
+                        <small>有什么比生活环境更重要的</small>
+                    </div>
+                    <div class="grid-widget groups-grid--listings clearfix">
+                        <div class="col-xs-4" *ngFor="let btlocation of btLocation | async">
+                            <div class="grid-widget__item">
+                                <img src="{{btlocation.photo}}" alt>
+                                <div class="grid-widget__info">
+                                    <h4>{{btlocation.location}}</h4>
+                                    <small>{{btlocation.listings}}条记录</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="view-more">查看所有优美城市<i class="zmdi zmdi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card clearfix">
+                    <div class="card__header card__header--minimal">
+                        <h2>本站诚信代理</h2>
+                        <small>本站拥有全球最优秀童叟无欺的代理商</small>
+                    </div>
+                    <div class="grid-widget groups-grid--listings clearfix">
+                        <div class="col-xs-4" *ngFor="let agent of topAgents | async" (click)="gotoDetail(agent)">
+                            <div class="grid-widget__item">
+                                <img src="{{agent.head}}" alt>
+                                <div class="grid-widget__info">
+                                    <h4>{{agent.name}}</h4>
+                                    <small>{{agent.email}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="view-more" [routerLink]="['/agents']">查看所有代理商<i class="zmdi zmdi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

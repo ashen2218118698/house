@@ -1,0 +1,54 @@
+<div class="action-header affix-top clearfix">
+    <div class="container">
+        <div class="action-header__item action-header__item--search">
+            <form>
+                <input class="hidden-xs" type="text" placeholder="请输入城市,小区或者价格进行搜索...">
+                <input class="visible-xs" type="text" placeholder="搜索...">
+            </form>
+        </div>
+    </div>
+</div>
+<section class="section">
+    <div class="container">
+        <header class="section__title">
+            <h2>来自全球各地的房子仅供您挑选</h2>
+            <small>在本站出售的房子,将由旧房屋网提供10000年售后</small>
+        </header>
+        <div class="row listings-grid" *ngIf="houses">
+            <div *ngFor="let house of houses | async" (click)="gotoDetail(house)" class="col-sm-6 col-md-3">
+                <div class="listings-grid__item">
+                    <a>
+                        <div class="listings-grid__main">
+                        <img src="{{house.photo}}" alt>
+                        <div class="listings-grid__price">{{house.price}}</div>
+                    </div>
+                        <div class="listings-grid__body">
+                        <small>{{house.location}}</small>
+                        <h5>{{house.phone}}</h5>
+                    </div>
+                        <ul class="listings-grid__attrs">
+                        <li>
+                            <i class="listings-grid__icon listings-grid__icon--bed"></i>
+                            {{house.bedroom}}
+                        </li>
+                        <li>
+                            <i class="listings-grid__icon listings-grid__icon--bath"></i>
+                            {{house.bathroom}}
+                        </li>
+                        <li>
+                            <i class="listings-grid__icon listings-grid__icon--garages"></i>
+                            {{house.garages}}
+                        </li>
+                    </ul>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="load-more">
+            <a href>
+                <i class="zmdi zmdi-refresh-alt"></i>
+                加载更多待售房屋
+            </a>
+        </div>
+    </div>
+</section>
